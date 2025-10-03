@@ -1,0 +1,12 @@
+{
+  "types": {
+    "feat": {},
+    "fix": {},
+    "docs": {},
+    "style": {},
+    "test": {},
+    "chore": {},
+    "revert": {},
+    "️refactor": {}
+  }
+}
