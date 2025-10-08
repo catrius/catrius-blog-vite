@@ -7,20 +7,27 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "genapi": "npx dotenv -e .env.development -- npx @rtk-query/codegen-openapi openapi-config.js"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.9.0",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.9.3",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.0",
     "@eslint/js": "^9.36.0",
+    "@rtk-query/codegen-openapi": "^2.0.0",
     "@stylistic/eslint-plugin": "^3.1.0",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react-swc": "^4.1.0",
+    "dotenv-cli": "^10.0.0",
     "eslint": "^9.36.0",
     "eslint-config-airbnb-extended": "^2.3.1",
     "eslint-config-prettier": "^10.1.8",
