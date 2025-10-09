@@ -2,9 +2,13 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '../public/vite.svg';
 import './App.css';
+import { useGetPostQuery } from './api/api.ts';
 
 function App() {
   const [count, setCount] = useState(0);
+  const { data: post } = useGetPostQuery({});
+
+  console.log(post);
 
   return (
     <>

@@ -1,5 +1,5 @@
 const config = {
-  schemaFile: 'https://aymlsvimvyktzfsfyotp.supabase.co/rest/v1/',
+  schemaFile: process.env.VITE_ENV_API_URL,
   apiFile: './src/store/api-slices/emptyApi.ts',
   apiImport: 'emptySplitApi',
   outputFile: './src/api/api.ts',
