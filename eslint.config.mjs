@@ -78,8 +78,26 @@ const customConfig = [
       'react/react-in-jsx-scope': 'off',
       'import-x/extensions': 'off',
       'import-x/prefer-default-export': 'off',
-      'max-len': ['error', { code: 120, tabWidth: 2, ignoreUrls: true }],
-      'better-tailwindcss/enforce-consistent-line-wrapping': ['error', { printWidth: 120 }],
+      'max-len': [
+        'error',
+        {
+          code: 120,
+          tabWidth: 2,
+          ignoreUrls: true,
+        },
+      ],
+      'better-tailwindcss/enforce-consistent-line-wrapping': [
+        'warn',
+        {
+          printWidth: 120,
+        },
+      ],
+      'better-tailwindcss/no-unregistered-classes': [
+        'warn',
+        {
+          ignore: ['no-twp'],
+        },
+      ],
     },
   },
 ];

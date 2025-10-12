@@ -1,6 +1,8 @@
 import { useGetPostQuery } from '@/api/api.ts';
 import { useParams } from 'react-router';
 import dayjs from 'dayjs';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 function Post() {
   const params = useParams();
@@ -17,7 +19,9 @@ function Post() {
       <div className="mb-4 text-3xl/relaxed font-extralight whitespace-pre-wrap text-neutral-950 uppercase">
         {post.title}
       </div>
-      <div className="text-base/loose font-light text-neutral-950">{post.content}</div>
+      <div className="no-twp">
+        <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
+      </div>
     </div>
   );
 }

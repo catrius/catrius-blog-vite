@@ -6,13 +6,16 @@ import { Link } from 'react-router';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { createPortal } from 'react-dom';
+import PATH from '@/routes.ts';
 
 function BurgerNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <nav className="flex items-center border-b border-neutral-950 px-5 py-3">
-        <div className="basis-1/2 text-3xl font-extralight uppercase">{import.meta.env.VITE_ENV_PAGE_NAME}</div>
+        <Link to={PATH.home} className="basis-1/2 text-3xl font-extralight uppercase">
+          {import.meta.env.VITE_ENV_PAGE_NAME}
+        </Link>
         <button
           type="button"
           className="flex basis-1/2 flex-row-reverse"

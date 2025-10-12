@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+@layer base {
+  .no-twp {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+      all: revert-layer;
+    }
+  }
+}
