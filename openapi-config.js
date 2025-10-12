@@ -1,4 +1,5 @@
 const config = {
+  // eslint-disable-next-line no-undef
   schemaFile: process.env.VITE_ENV_API_URL,
   apiFile: './src/store/api-slices/emptyApi.ts',
   apiImport: 'emptySplitApi',
@@ -12,6 +13,7 @@ const config = {
   useEnumType: true,
   httpResolverOptions: {
     headers: {
+      // eslint-disable-next-line no-undef
       apikey: process.env.VITE_ENV_API_KEY,
     },
   },

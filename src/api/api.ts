@@ -18,6 +18,7 @@ const injectedRtkApi = api.injectEndpoints({
           title: queryArg.title,
           content: queryArg.content,
           excerpt: queryArg.excerpt,
+          thumbnail: queryArg.thumbnail,
           select: queryArg.select,
           order: queryArg.order,
           offset: queryArg.offset,
@@ -51,6 +52,7 @@ const injectedRtkApi = api.injectEndpoints({
           title: queryArg.title,
           content: queryArg.content,
           excerpt: queryArg.excerpt,
+          thumbnail: queryArg.thumbnail,
         },
       }),
     }),
@@ -68,6 +70,7 @@ const injectedRtkApi = api.injectEndpoints({
           title: queryArg.title,
           content: queryArg.content,
           excerpt: queryArg.excerpt,
+          thumbnail: queryArg.thumbnail,
         },
       }),
     }),
@@ -84,6 +87,7 @@ export type GetPostApiArg = {
   title?: string;
   content?: string;
   excerpt?: string;
+  thumbnail?: string;
   /** Filtering Columns */
   select?: string;
   /** Ordering */
@@ -120,6 +124,7 @@ export type DeletePostApiArg = {
   title?: string;
   content?: string;
   excerpt?: string;
+  thumbnail?: string;
   /** Preference */
   prefer?: "return=representation" | "return=minimal" | "return=none";
 };
@@ -130,6 +135,7 @@ export type PatchPostApiArg = {
   title?: string;
   content?: string;
   excerpt?: string;
+  thumbnail?: string;
   /** Preference */
   prefer?: "return=representation" | "return=minimal" | "return=none";
   /** post */
@@ -143,6 +149,7 @@ export type Post = {
   title: string;
   content: string;
   excerpt?: string;
+  thumbnail?: string;
 };
 export const {
   use$getQuery,

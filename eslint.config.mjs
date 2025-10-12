@@ -6,6 +6,7 @@ import { configs, plugins } from 'eslint-config-airbnb-extended';
 import { rules as prettierConfigRules } from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 import { globalIgnores } from 'eslint/config';
+import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss';
 
 const gitignorePath = path.resolve('.', '.gitignore');
 
@@ -63,10 +64,21 @@ const prettierConfig = [
 
 const customConfig = [
   {
+    settings: {
+      'better-tailwindcss': {
+        // tailwindcss 4: the path to the entry file of the css based tailwind config (eg: `src/global.css`)
+        entryPoint: 'src/index.css',
+      },
+    },
+    plugins: {
+      'better-tailwindcss': eslintPluginBetterTailwindcss,
+    },
     rules: {
+      ...eslintPluginBetterTailwindcss.configs['recommended-warn'].rules,
       'react/react-in-jsx-scope': 'off',
       'import-x/extensions': 'off',
       'import-x/prefer-default-export': 'off',
+      'max-len': ['error', { code: 120, tabWidth: 2, ignoreUrls: true }],
     },
   },
 ];
