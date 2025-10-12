@@ -48,9 +48,8 @@ function BurgerNav() {
                   {Object.entries(NAV_PATHS).map((path) => (
                     <Link
                       className={`
-                        border-r border-neutral-950 text-3xl font-extralight
-                        text-neutral-200 uppercase transition duration-250
-                        ease-in-out
+                        text-3xl font-extralight text-neutral-200 uppercase
+                        transition duration-250 ease-in-out
                       `}
                       to={path[1]}
                     >
