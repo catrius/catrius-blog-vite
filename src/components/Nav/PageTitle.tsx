@@ -4,10 +4,14 @@ import { useLocation } from 'react-router';
 function PageTitle() {
   const location = useLocation();
 
+  if (!NAV_PAGE_NAMES[location.pathname]) {
+    return <div />;
+  }
+
   return (
     <div
       className={`
-        flex h-25 place-content-center items-center text-5xl font-extralight
+        flex place-content-center items-center py-5 text-4xl font-extralight
         uppercase
         sm:border-b sm:border-neutral-950
       `}

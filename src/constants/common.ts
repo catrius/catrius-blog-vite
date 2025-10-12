@@ -1,5 +1,4 @@
 import PATH from '@/routes.ts';
-import { invert } from 'es-toolkit';
 
 export const NAV_PATHS = {
   blog: PATH.home,
@@ -7,4 +6,8 @@ export const NAV_PATHS = {
   contact: PATH.contact,
 };
 
-export const NAV_PAGE_NAMES = invert(NAV_PATHS);
+export const NAV_PAGE_NAMES = {
+  [PATH.home]: 'The Blog',
+  [PATH.about]: 'About',
+  [PATH.contact]: 'Contact',
+};

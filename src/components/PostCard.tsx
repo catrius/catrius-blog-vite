@@ -12,7 +12,6 @@ function PostCard({ post }: PropsType) {
   return (
     <div
       className={`
-        text-justify
         sm:max-w-93 sm:border sm:border-neutral-950
       `}
     >
