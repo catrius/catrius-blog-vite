@@ -10,8 +10,7 @@ function Footer() {
         {Object.entries({ [import.meta.env.VITE_ENV_PAGE_NAME]: PATH.home, ...NAV_PATHS }).map((path) => (
           <Link
             className={`
-              text-2xl font-extralight text-neutral-500 uppercase transition
-              duration-250 ease-in-out
+              text-2xl font-extralight text-neutral-500 uppercase transition duration-250 ease-in-out
               first:text-3xl first:text-neutral-950
             `}
             to={path[1]}

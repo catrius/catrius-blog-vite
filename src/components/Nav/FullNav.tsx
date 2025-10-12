@@ -13,8 +13,8 @@ function FullNav() {
       {Object.entries({ [import.meta.env.VITE_ENV_PAGE_NAME]: PATH.home, ...NAV_PATHS }).map((path) => (
         <Link
           className={`
-            flex items-center border-r border-neutral-950 px-13 py-6 font-light
-            uppercase transition duration-250 ease-in-out
+            flex items-center border-r border-neutral-950 px-13 py-6 font-light uppercase transition duration-250
+            ease-in-out
             first:text-3xl
             not-first:hover:bg-neutral-950 not-first:hover:text-neutral-300
           `}

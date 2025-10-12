@@ -11,8 +11,7 @@ function PageTitle() {
   return (
     <div
       className={`
-        flex place-content-center items-center py-5 text-4xl font-extralight
-        uppercase
+        flex place-content-center items-center py-5 text-4xl font-extralight uppercase
         sm:border-b sm:border-neutral-950
       `}
     >
