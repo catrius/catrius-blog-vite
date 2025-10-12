@@ -16,7 +16,7 @@ function PostCard({ post }: PropsType) {
         sm:max-w-93 sm:border sm:border-neutral-950
       `}
     >
-      <div className="mb-7 h-62.5 overflow-hidden">
+      <div className="mb-7 aspect-16/9 overflow-hidden">
         <img src={post.thumbnail} alt="" />
       </div>
       <div className="mx-5 border-b-2 border-b-neutral-200 pb-7">
