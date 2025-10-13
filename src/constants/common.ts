@@ -10,6 +10,7 @@ export const NAV_PAGE_NAMES = {
   [PATH.home]: 'The Blog',
   [PATH.about]: 'About',
   [PATH.contact]: 'Contact',
+  [PATH.search]: 'Search Results',
 };
 
 export const PageSize = 12;

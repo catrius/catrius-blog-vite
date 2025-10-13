@@ -3,6 +3,7 @@ import PATH from '@/routes.ts';
 import Home from '@/pages/Home.tsx';
 import App from '@/App.tsx';
 import Post from '@/pages/Post.tsx';
+import Search from '@/pages/Search.tsx';
 
 const routes = [
   {
@@ -12,6 +13,10 @@ const routes = [
   {
     path: PATH.post,
     element: <Post />,
+  },
+  {
+    path: PATH.search,
+    element: <Search />,
   },
 ];
 

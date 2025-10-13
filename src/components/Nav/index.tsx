@@ -1,14 +1,14 @@
 import FullNav from '@/components/Nav/FullNav.tsx';
 import BurgerNav from '@/components/Nav/BurgerNav.tsx';
 import PageTitle from '@/components/Nav/PageTitle.tsx';
-import Search from '@/components/Nav/Search.tsx';
+import SearchBox from '@/components/Nav/SearchBox.tsx';
 
 function Nav() {
   return (
     <>
       <FullNav />
       <BurgerNav />
-      <Search />
+      <SearchBox />
       <PageTitle />
     </>
   );

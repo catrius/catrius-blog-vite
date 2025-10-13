@@ -98,6 +98,12 @@ const customConfig = [
           ignore: ['no-twp'],
         },
       ],
+      'react/require-default-props': [
+        'warn',
+        {
+          functions: 'defaultArguments',
+        },
+      ],
     },
   },
 ];
