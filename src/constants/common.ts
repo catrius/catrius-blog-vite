@@ -11,3 +11,5 @@ export const NAV_PAGE_NAMES = {
   [PATH.about]: 'About',
   [PATH.contact]: 'Contact',
 };
+
+export const PageSize = 12;

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "rc-pagination/assets/index.css";
 
 @layer base {
   .no-twp {
@@ -10,4 +11,16 @@
       all: revert-layer;
     }
   }
+}
+
+.rc-pagination-item-active,
+.rc-pagination-item-active:focus,
+.rc-pagination-item:hover {
+  border-color: var(--color-neutral-950);
+}
+
+.rc-pagination-item-active a,
+.rc-pagination-item-active:focus a,
+.rc-pagination-item:hover a {
+  color: var(--color-neutral-950)
 }
