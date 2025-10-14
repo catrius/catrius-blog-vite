@@ -2,7 +2,7 @@ import { FaBars } from 'react-icons/fa6';
 import { HiXMark } from 'react-icons/hi2';
 import { RemoveScroll } from 'react-remove-scroll';
 import { Link, useLocation } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { createPortal } from 'react-dom';
 import PATH, { NAV_PATHS } from '@/routes.ts';
@@ -10,6 +10,10 @@ import PATH, { NAV_PATHS } from '@/routes.ts';
 function BurgerNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <>
