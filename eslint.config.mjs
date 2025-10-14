@@ -78,6 +78,7 @@ const customConfig = [
       'react/react-in-jsx-scope': 'off',
       'import-x/extensions': 'off',
       'import-x/prefer-default-export': 'off',
+      'jsx-a11y/label-has-associated-control': 'off',
       'max-len': [
         'error',
         {

@@ -74,6 +74,76 @@ const injectedRtkApi = api.injectEndpoints({
         },
       }),
     }),
+    getContact: build.query<GetContactApiResponse, GetContactApiArg>({
+      query: (queryArg) => ({
+        url: `/contact`,
+        headers: {
+          Range: queryArg.range,
+          "Range-Unit": queryArg["Range-Unit"],
+          Prefer: queryArg.prefer,
+        },
+        params: {
+          id: queryArg.id,
+          created_at: queryArg.createdAt,
+          name: queryArg.name,
+          email: queryArg.email,
+          message: queryArg.message,
+          select: queryArg.select,
+          order: queryArg.order,
+          offset: queryArg.offset,
+          limit: queryArg.limit,
+        },
+      }),
+    }),
+    postContact: build.mutation<PostContactApiResponse, PostContactApiArg>({
+      query: (queryArg) => ({
+        url: `/contact`,
+        method: "POST",
+        body: queryArg.contact,
+        headers: {
+          Prefer: queryArg.prefer,
+        },
+        params: {
+          select: queryArg.select,
+        },
+      }),
+    }),
+    deleteContact: build.mutation<
+      DeleteContactApiResponse,
+      DeleteContactApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/contact`,
+        method: "DELETE",
+        headers: {
+          Prefer: queryArg.prefer,
+        },
+        params: {
+          id: queryArg.id,
+          created_at: queryArg.createdAt,
+          name: queryArg.name,
+          email: queryArg.email,
+          message: queryArg.message,
+        },
+      }),
+    }),
+    patchContact: build.mutation<PatchContactApiResponse, PatchContactApiArg>({
+      query: (queryArg) => ({
+        url: `/contact`,
+        method: "PATCH",
+        body: queryArg.contact,
+        headers: {
+          Prefer: queryArg.prefer,
+        },
+        params: {
+          id: queryArg.id,
+          created_at: queryArg.createdAt,
+          name: queryArg.name,
+          email: queryArg.email,
+          message: queryArg.message,
+        },
+      }),
+    }),
     getPage: build.query<GetPageApiResponse, GetPageApiArg>({
       query: (queryArg) => ({
         url: `/page`,
@@ -208,6 +278,64 @@ export type PatchPostApiArg = {
   /** post */
   post: Post;
 };
+export type GetContactApiResponse = /** status 200 OK */ Contact[];
+export type GetContactApiArg = {
+  id?: string;
+  createdAt?: string;
+  name?: string;
+  email?: string;
+  message?: string;
+  /** Filtering Columns */
+  select?: string;
+  /** Ordering */
+  order?: string;
+  /** Limiting and Pagination */
+  range?: string;
+  /** Limiting and Pagination */
+  "Range-Unit"?: string;
+  /** Limiting and Pagination */
+  offset?: string;
+  /** Limiting and Pagination */
+  limit?: string;
+  /** Preference */
+  prefer?: "count=none";
+};
+export type PostContactApiResponse = unknown;
+export type PostContactApiArg = {
+  /** Filtering Columns */
+  select?: string;
+  /** Preference */
+  prefer?:
+    | "return=representation"
+    | "return=minimal"
+    | "return=none"
+    | "resolution=ignore-duplicates"
+    | "resolution=merge-duplicates";
+  /** contact */
+  contact: Contact;
+};
+export type DeleteContactApiResponse = unknown;
+export type DeleteContactApiArg = {
+  id?: string;
+  createdAt?: string;
+  name?: string;
+  email?: string;
+  message?: string;
+  /** Preference */
+  prefer?: "return=representation" | "return=minimal" | "return=none";
+};
+export type PatchContactApiResponse = unknown;
+export type PatchContactApiArg = {
+  id?: string;
+  createdAt?: string;
+  name?: string;
+  email?: string;
+  message?: string;
+  /** Preference */
+  prefer?: "return=representation" | "return=minimal" | "return=none";
+  /** contact */
+  contact: Contact;
+};
 export type GetPageApiResponse = /** status 200 OK */ Page[];
 export type GetPageApiArg = {
   id?: string;
@@ -276,6 +404,15 @@ export type Post = {
   excerpt?: string;
   thumbnail?: string;
 };
+export type Contact = {
+  /** Note:
+    This is a Primary Key.<pk/> */
+  id: number;
+  created_at: string;
+  name: string;
+  email?: string;
+  message: string;
+};
 export type Page = {
   /** Note:
     This is a Primary Key.<pk/> */
@@ -293,6 +430,11 @@ export const {
   usePostPostMutation,
   useDeletePostMutation,
   usePatchPostMutation,
+  useGetContactQuery,
+  useLazyGetContactQuery,
+  usePostContactMutation,
+  useDeleteContactMutation,
+  usePatchContactMutation,
   useGetPageQuery,
   useLazyGetPageQuery,
   usePostPageMutation,

@@ -18,7 +18,6 @@ export const NAV_PATHS = {
 
 export const NAV_PAGE_NAMES = {
   [PATH.home]: 'The Blog',
-  [PATH.contact]: 'Contact',
   [PATH.search]: 'Search Results',
 };
 

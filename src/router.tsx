@@ -5,6 +5,7 @@ import App from '@/App.tsx';
 import Post from '@/pages/Post.tsx';
 import Search from '@/pages/Search.tsx';
 import Page from '@/pages/Page';
+import Contact from '@/pages/Contact.tsx';
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
   {
     path: PATH.page,
     element: <Page />,
+  },
+  {
+    path: PATH.contact,
+    element: <Contact />,
   },
 ];
 
