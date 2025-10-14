@@ -1,15 +1,16 @@
 import { FaBars } from 'react-icons/fa6';
 import { HiXMark } from 'react-icons/hi2';
 import { RemoveScroll } from 'react-remove-scroll';
-import { NAV_PATHS } from '@/constants/common.ts';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { createPortal } from 'react-dom';
-import PATH from '@/routes.ts';
+import PATH, { NAV_PATHS } from '@/routes.ts';
 
 function BurgerNav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
   return (
     <>
       <nav className="flex items-center border-b border-neutral-950 px-5 py-3">
@@ -31,7 +32,7 @@ function BurgerNav() {
           {menuOpen && (
             <RemoveScroll>
               <motion.div
-                className="absolute inset-0 bg-neutral-950 pt-5 pr-5 pl-10"
+                className="absolute inset-0 h-screen bg-neutral-950 pt-5 pr-5 pl-10"
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -50, opacity: 0 }}
@@ -51,7 +52,8 @@ function BurgerNav() {
                   {Object.entries(NAV_PATHS).map((path) => (
                     <Link
                       className={`
-                        text-3xl font-extralight text-neutral-200 uppercase transition duration-250 ease-in-out
+                        text-3xl font-extralight uppercase transition duration-250 ease-in-out
+                        ${location.pathname === path[1] ? 'text-neutral-500' : 'text-neutral-200'}
                       `}
                       to={path[1]}
                     >

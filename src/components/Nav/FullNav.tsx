@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
-import { NAV_PATHS } from '@/constants/common.ts';
-import PATH from '@/routes.ts';
+import PATH, { NAV_PATHS } from '@/routes.ts';
 
 function FullNav() {
   return (

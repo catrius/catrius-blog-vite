@@ -1,11 +1,10 @@
 import dayjs from 'dayjs';
-import { NAV_PATHS } from '@/constants/common.ts';
 import { Link } from 'react-router';
-import PATH from '@/routes.ts';
+import PATH, { NAV_PATHS } from '@/routes.ts';
 
 function Footer() {
   return (
-    <div className="mt-12 border-t border-neutral-950 pt-8 pb-4">
+    <div className="border-t border-neutral-950 pt-8 pb-4">
       <div className="mb-8 flex flex-col items-center gap-5">
         {Object.entries({ [import.meta.env.VITE_ENV_PAGE_NAME]: PATH.home, ...NAV_PATHS }).map((path) => (
           <Link

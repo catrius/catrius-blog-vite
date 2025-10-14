@@ -4,6 +4,7 @@ import Home from '@/pages/Home.tsx';
 import App from '@/App.tsx';
 import Post from '@/pages/Post.tsx';
 import Search from '@/pages/Search.tsx';
+import Page from '@/pages/Page';
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
   {
     path: PATH.search,
     element: <Search />,
+  },
+  {
+    path: PATH.page,
+    element: <Page />,
   },
 ];
 

@@ -16,7 +16,11 @@ function Search() {
     };
   }, [params]);
 
-  return <PostList posts={posts} getPost={getPost} query={query} />;
+  return (
+    <div className="mb-8">
+      <PostList posts={posts} getPost={getPost} query={query} />
+    </div>
+  );
 }
 
 export default Search;

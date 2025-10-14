@@ -4,7 +4,11 @@ import PostList from '@/components/PostList.tsx';
 function Home() {
   const [getPost, { data: posts }] = useLazyGetPostQuery();
 
-  return <PostList posts={posts} getPost={getPost} />;
+  return (
+    <div className="mb-8">
+      <PostList posts={posts} getPost={getPost} />
+    </div>
+  );
 }
 
 export default Home;

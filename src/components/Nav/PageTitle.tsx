@@ -1,5 +1,5 @@
-import { NAV_PAGE_NAMES } from '@/constants/common.ts';
 import { useLocation } from 'react-router';
+import { NAV_PAGE_NAMES } from '@/routes';
 
 function PageTitle() {
   const location = useLocation();

@@ -1,13 +1,25 @@
 const PATH = {
   home: '/',
-  about: '/about',
   contact: '/contact',
   post: '/post/:id',
   search: '/search',
+  page: '/page/:name',
 };
 
-export const buildDetailPath = (path: string) => (id: string | number) => path.replace(':id', id.toString());
-export const buildPostPath = buildDetailPath(PATH.post);
+export const buildPostPath = (id: string | number) => PATH.post.replace(':id', id.toString());
+export const buildPagePath = (name: string | number) => PATH.page.replace(':name', name.toString());
 export const buildSearchPath = (query: string) => `${PATH.search}?q=${query}`;
+
+export const NAV_PATHS = {
+  blog: PATH.home,
+  about: buildPagePath('about'),
+  contact: PATH.contact,
+};
+
+export const NAV_PAGE_NAMES = {
+  [PATH.home]: 'The Blog',
+  [PATH.contact]: 'Contact',
+  [PATH.search]: 'Search Results',
+};
 
 export default PATH;
