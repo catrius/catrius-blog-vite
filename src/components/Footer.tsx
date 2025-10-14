@@ -21,7 +21,7 @@ function Footer() {
       </div>
       <div className="flex flex-col items-center font-light text-neutral-950">
         <div>{`© ${dayjs().format('YYYY')} by ${import.meta.env.VITE_ENV_PAGE_NAME}`}</div>
-        <div>Created with React, Tailwind, Vercel, Supabase</div>
+        <div className="font-stretch-semi-condensed">Created with React, Tailwind, Vite, Vercel, Supabase</div>
       </div>
     </div>
   );
