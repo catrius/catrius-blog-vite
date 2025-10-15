@@ -5,10 +5,9 @@ import Pagination from '@/components/Pagination.tsx';
 interface PropsType {
   getPost: ReturnType<typeof useLazyGetPostQuery>[0];
   posts?: Post[];
-  query?: Record<string, string>;
 }
 
-function PostList({ getPost, posts = [], query = undefined }: PropsType) {
+function PostList({ getPost, posts = [] }: PropsType) {
   return (
     <div>
       <div className="mb-8 flex w-full flex-wrap place-content-center gap-8">
@@ -17,7 +16,7 @@ function PostList({ getPost, posts = [], query = undefined }: PropsType) {
         ))}
       </div>
       <div className="flex flex-col items-center">
-        <Pagination getPost={getPost} query={query} />
+        <Pagination getPost={getPost} />
       </div>
     </div>
   );

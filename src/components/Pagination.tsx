@@ -27,6 +27,10 @@ function Pagination({ getPost, query = undefined }: PropsType) {
     });
   }, [currentPage, getPost, stableQuery]);
 
+  if (!total) {
+    return null;
+  }
+
   return (
     <RcPagination
       total={total}
