@@ -1,10 +1,6 @@
 import type { Post } from '@/api/api.ts';
-import dayjs from 'dayjs';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { Link } from 'react-router';
 import { buildPostPath } from '@/routes.ts';
-
-dayjs.extend(localizedFormat);
 
 interface PropsType {
   post: Post;
@@ -12,13 +8,16 @@ interface PropsType {
 
 function SearchPostCard({ post }: PropsType) {
   return (
-    <Link to={buildPostPath(post.id)} className="sm:border sm:border-neutral-950">
+    <Link to={buildPostPath(post.id)} className="sm:flex sm:gap-10">
       <div
         className={`
-          border-b-neutral-200
-          sm:border-0
+          hidden aspect-3/2 shrink-0 basis-44 overflow-hidden
+          sm:block
         `}
       >
+        <img src={post.thumbnail} alt="" />
+      </div>
+      <div className="sm:flex sm:flex-col sm:justify-center">
         <div
           className={`
             mb-1 overflow-hidden text-xl/normal font-extralight text-neutral-950 uppercase underline
@@ -27,7 +26,14 @@ function SearchPostCard({ post }: PropsType) {
         >
           {post.title}
         </div>
-        <div className="line-clamp-2 overflow-hidden text-base/relaxed font-light text-neutral-950">{post.excerpt}</div>
+        <div
+          className={`
+            line-clamp-2 overflow-hidden text-base/relaxed font-light text-neutral-950
+            sm:line-clamp-3
+          `}
+        >
+          {post.excerpt}
+        </div>
       </div>
     </Link>
   );

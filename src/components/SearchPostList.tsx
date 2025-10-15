@@ -11,7 +11,12 @@ interface PropsType {
 function SearchPostList({ getPost, posts = [], query = undefined }: PropsType) {
   return (
     <div>
-      <div className="mb-8 flex w-full flex-wrap place-content-center gap-6">
+      <div
+        className={`
+          mb-8 flex w-full flex-wrap gap-6
+          sm:gap-8
+        `}
+      >
         {posts?.map((post) => (
           <SearchPostCard key={post.id} post={post} />
         ))}
