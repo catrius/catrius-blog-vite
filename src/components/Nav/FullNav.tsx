@@ -8,18 +8,19 @@ function FullNav() {
   return (
     <nav
       className={`
-        hidden place-content-center border-b border-neutral-950
+        hidden place-content-center border-b border-neutral-950 px-5
         sm:flex
       `}
     >
       {Object.entries({ [import.meta.env.VITE_ENV_PAGE_NAME]: PATH.home, ...NAV_PATHS }).map((path) => (
         <Link
           className={`
-            flex items-center border-r border-neutral-950 px-13 py-6 font-light uppercase transition duration-250
+            flex basis-45 items-center border-r border-neutral-950 py-6 font-light uppercase transition duration-250
             ease-in-out
+            not-first:justify-center
             first:text-3xl
             not-first:hover:bg-neutral-950 not-first:hover:text-neutral-300
-            ${location.pathname === path[1] && 'sm:not-first:bg-neutral-950 sm:not-first:text-neutral-200'}
+            ${location.pathname === path[1] && 'not-first:bg-neutral-950 not-first:text-neutral-200'}
           `}
           to={path[1]}
         >

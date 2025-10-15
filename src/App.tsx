@@ -12,9 +12,14 @@ function App() {
 
   return (
     // flex h-screen flex-col mb-auto: This combo makes footer sits at bottom
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen min-w-93 flex-col">
       <Nav />
-      <div className="mb-auto">
+      <div
+        className={`
+          mb-auto
+          sm:px-5
+        `}
+      >
         <Outlet />
       </div>
       <Footer />

@@ -24,11 +24,11 @@ function SearchBox() {
     <div
       className={`
         flex items-center gap-4 border-b border-neutral-950 px-5 py-4
-        sm:flex-row-reverse sm:border-0 sm:pr-13
+        sm:basis-45 sm:flex-row-reverse sm:border-0 sm:px-0 sm:pl-3
       `}
     >
       <input
-        className="grow font-light placeholder-neutral-500 outline-0"
+        className="w-10 grow font-light placeholder-neutral-500 outline-0"
         type="text"
         placeholder="Search..."
         onChange={(e) => {
