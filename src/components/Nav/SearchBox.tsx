@@ -1,5 +1,5 @@
 import { IoSearchOutline } from 'react-icons/io5';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { buildSearchPath } from '@/routes.ts';
 
@@ -7,6 +7,13 @@ function SearchBox() {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [params] = useSearchParams();
+
+  const search = useCallback(() => {
+    if (!query || query.length < 2) {
+      return;
+    }
+    navigate(buildSearchPath(query));
+  }, [navigate, query]);
 
   useEffect(() => {
     const q = params.get('q') ?? '';
@@ -24,7 +31,7 @@ function SearchBox() {
         }}
         onKeyUp={(e) => {
           if (e.key === 'Enter') {
-            navigate(buildSearchPath(query));
+            search();
           }
         }}
         value={query}
@@ -33,7 +40,7 @@ function SearchBox() {
         className="flex basis-auto"
         type="button"
         onClick={() => {
-          navigate(buildSearchPath(query));
+          search();
         }}
       >
         <IoSearchOutline className="text-xl" />
