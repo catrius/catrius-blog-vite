@@ -11,11 +11,14 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <>
+    // flex h-screen flex-col mb-auto: This combo makes footer sits at bottom
+    <div className="flex h-screen flex-col">
       <Nav />
-      <Outlet />
+      <div className="mb-auto">
+        <Outlet />
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
