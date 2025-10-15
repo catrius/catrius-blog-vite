@@ -16,10 +16,17 @@ function PostCard({ post }: PropsType) {
       <div className="mb-7 aspect-16/9 overflow-hidden">
         <img src={post.thumbnail} alt="" />
       </div>
-      <div className="mx-5 border-b-2 border-b-neutral-200 pb-7">
+      <div
+        className={`
+          mx-5 border-b-2 border-b-neutral-200 pb-7
+          sm:border-0
+        `}
+      >
         <div className="mb-4 text-sm/normal font-light">{dayjs(post.created_at).format('ll')}</div>
-        <div className="mb-3 text-2xl/normal font-extralight text-neutral-950 uppercase">{post.title}</div>
-        <div className="text-base/relaxed font-light text-neutral-950">{post.excerpt}</div>
+        <div className="mb-3 h-18 overflow-hidden text-2xl/normal font-extralight text-neutral-950 uppercase">
+          {post.title}
+        </div>
+        <div className="h-26 overflow-hidden text-base/relaxed font-light text-neutral-950">{post.excerpt}</div>
       </div>
     </Link>
   );
