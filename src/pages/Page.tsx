@@ -13,8 +13,18 @@ function Page() {
   }
 
   return (
-    <div className="px-5 py-8">
-      <div className="mb-4 text-center text-3xl/relaxed font-extralight whitespace-pre-wrap text-neutral-950 uppercase">
+    <div
+      className={`
+        px-5 py-8
+        sm:mx-auto sm:my-5 sm:max-w-400
+      `}
+    >
+      <div
+        className={`
+          mb-4 text-center text-3xl/relaxed font-extralight whitespace-pre-wrap text-neutral-950 uppercase
+          sm:text-4xl/relaxed
+        `}
+      >
         {page.title}
       </div>
       <div className="no-twp">

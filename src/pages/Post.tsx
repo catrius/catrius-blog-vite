@@ -14,9 +14,19 @@ function Post() {
   }
 
   return (
-    <div className="px-5 py-8">
+    <div
+      className={`
+        px-5 py-8
+        sm:mx-auto sm:my-5 sm:max-w-400
+      `}
+    >
       <div className="mb-2 text-sm/normal font-light">{dayjs(post.created_at).format('ll')}</div>
-      <div className="mb-4 text-3xl/relaxed font-extralight whitespace-pre-wrap text-neutral-950 uppercase">
+      <div
+        className={`
+          mb-4 text-3xl/relaxed font-extralight whitespace-pre-wrap text-neutral-950 uppercase
+          sm:text-4xl/relaxed
+        `}
+      >
         {post.title}
       </div>
       <div className="no-twp">

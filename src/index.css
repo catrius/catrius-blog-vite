@@ -24,3 +24,7 @@
 .rc-pagination-item:hover a {
   color: var(--color-neutral-950)
 }
+
+.no-twp * {
+  white-space: pre-wrap;
+}

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { createPortal } from 'react-dom';
 import PATH, { NAV_PATHS } from '@/routes.ts';
+import SearchBox from '@/components/Nav/SearchBox';
 
 function BurgerNav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,7 +17,7 @@ function BurgerNav() {
   }, [location.pathname]);
 
   return (
-    <>
+    <div className="sm:hidden">
       <nav className="flex items-center border-b border-neutral-950 px-5 py-3">
         <Link to={PATH.home} className="basis-1/2 text-3xl font-extralight uppercase">
           {import.meta.env.VITE_ENV_PAGE_NAME}
@@ -71,7 +72,8 @@ function BurgerNav() {
         </AnimatePresence>,
         document.body,
       )}
-    </>
+      <SearchBox />
+    </div>
   );
 }
 

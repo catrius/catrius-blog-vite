@@ -17,7 +17,12 @@ function Search() {
   }, [params]);
 
   return (
-    <div className="mb-8">
+    <div
+      className={`
+        mb-8
+        sm:mx-auto sm:max-w-480
+      `}
+    >
       <PostList posts={posts} getPost={getPost} query={query} />
     </div>
   );
