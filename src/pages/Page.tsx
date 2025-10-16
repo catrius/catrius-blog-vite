@@ -16,7 +16,7 @@ function Page() {
     <div
       className={`
         px-5 py-8
-        sm:mx-auto sm:my-5 sm:max-w-400
+        sm:mx-auto sm:my-5 sm:max-w-300
       `}
     >
       <div
