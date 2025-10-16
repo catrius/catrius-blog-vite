@@ -1,5 +1,5 @@
 import RcPagination from 'rc-pagination';
-import { PageSize } from '@/constants/common.ts';
+import { PAGE_SIZE } from '@/constants/common.ts';
 import { type useLazyGetPostQuery, useGetPostQuery } from '@/api/api.ts';
 import { useState, useEffect, useMemo } from 'react';
 
@@ -19,8 +19,8 @@ function Pagination({ getPost, query = undefined }: PropsType) {
   useEffect(() => {
     getPost({
       order: 'created_at.desc',
-      limit: PageSize.toString(),
-      offset: ((currentPage - 1) * PageSize).toString(),
+      limit: PAGE_SIZE.toString(),
+      offset: ((currentPage - 1) * PAGE_SIZE).toString(),
       ...stableQuery,
     }).then(() => {
       window.scrollTo(0, 0);
@@ -34,7 +34,7 @@ function Pagination({ getPost, query = undefined }: PropsType) {
   return (
     <RcPagination
       total={total}
-      defaultPageSize={PageSize}
+      defaultPageSize={PAGE_SIZE}
       onChange={(current: number) => {
         setCurrentPage(current);
       }}

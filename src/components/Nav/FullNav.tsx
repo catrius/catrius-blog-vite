@@ -27,7 +27,12 @@ function FullNav() {
           {path[0]}
         </Link>
       ))}
-      <SearchBox />
+      <SearchBox
+        className={`
+          border-b border-neutral-950 py-4
+          sm:border-0 sm:px-0 sm:pl-3
+        `}
+      />
     </nav>
   );
 }

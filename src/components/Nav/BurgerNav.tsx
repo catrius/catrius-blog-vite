@@ -72,7 +72,7 @@ function BurgerNav() {
         </AnimatePresence>,
         document.body,
       )}
-      <SearchBox />
+      <SearchBox className="border-b border-neutral-950 py-4" />
     </div>
   );
 }

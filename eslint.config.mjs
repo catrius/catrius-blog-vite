@@ -79,6 +79,7 @@ const customConfig = [
       'import-x/extensions': 'off',
       'import-x/prefer-default-export': 'off',
       'jsx-a11y/label-has-associated-control': 'off',
+      'no-nested-ternary': 'off',
       'max-len': [
         'error',
         {

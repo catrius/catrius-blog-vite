@@ -3,29 +3,47 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { buildSearchPath } from '@/routes.ts';
 import { HiXMark } from 'react-icons/hi2';
+import { useDebounce } from 'use-debounce';
 
-function SearchBox() {
+interface PropsType {
+  className?: string;
+  auto?: boolean;
+}
+
+const DEBOUNCE_TIME = 1000;
+
+function SearchBox({ className = '', auto = false }: PropsType) {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [params] = useSearchParams();
 
+  const [debounceQuery] = useDebounce(query, DEBOUNCE_TIME);
+
   const search = useCallback(() => {
-    if (!query || query.length < 2) {
+    const theQuery = auto ? debounceQuery : query;
+    if (!theQuery) {
       return;
     }
-    navigate(buildSearchPath(query));
-  }, [navigate, query]);
+    navigate(buildSearchPath(theQuery));
+  }, [auto, debounceQuery, navigate, query]);
 
   useEffect(() => {
     const q = params.get('q') ?? '';
     setQuery(q);
   }, [params]);
 
+  useEffect(() => {
+    if (auto) {
+      search();
+    }
+  }, [auto, search]);
+
   return (
     <div
       className={`
-        flex items-center gap-4 border-b border-neutral-950 px-5 py-4
-        sm:basis-45 sm:flex-row-reverse sm:border-0 sm:px-0 sm:pl-3
+        flex items-center gap-4 px-5
+        sm:basis-45 sm:flex-row-reverse
+        ${className}
       `}
     >
       {query && (

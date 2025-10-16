@@ -2,6 +2,8 @@ import { useLazyGetPostQuery, useGetPostQuery } from '@/api/api.ts';
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import SearchPostList from '@/components/SearchPostList.tsx';
+import SearchBox from '@/components/Nav/SearchBox.tsx';
+import { SEARCH_MIN_CHAR } from '@/constants/common.ts';
 
 function Search() {
   const [getPost, { data: posts }] = useLazyGetPostQuery();
@@ -23,18 +25,21 @@ function Search() {
   return (
     <div
       className={`
-        mb-8 px-5
+        mt-5 mb-8 px-5
         sm:mx-auto sm:max-w-480
       `}
     >
+      <SearchBox className="mb-6 border-2 border-neutral-400 py-3" auto />
       <div className="mb-5 font-light">
-        {total > 0 ? (
+        {q.length < SEARCH_MIN_CHAR ? (
+          <span>Please input more than 1 character.</span>
+        ) : total > 0 ? (
           <span>{`${total} results found for "${q}".`}</span>
         ) : (
           <span>{`No results found for "${q}". Try a new search.`} </span>
         )}
       </div>
-      <SearchPostList posts={posts} getPost={getPost} query={query} />
+      {q.length >= SEARCH_MIN_CHAR && <SearchPostList posts={posts} getPost={getPost} query={query} />}
     </div>
   );
 }
