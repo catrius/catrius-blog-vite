@@ -2,6 +2,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { buildSearchPath } from '@/routes.ts';
+import { HiXMark } from 'react-icons/hi2';
 
 function SearchBox() {
   const navigate = useNavigate();
@@ -27,6 +28,22 @@ function SearchBox() {
         sm:basis-45 sm:flex-row-reverse sm:border-0 sm:px-0 sm:pl-3
       `}
     >
+      {query && (
+        <button
+          type="button"
+          className={`
+            hidden
+            sm:block
+          `}
+        >
+          <HiXMark
+            className="text-2xl"
+            onClick={() => {
+              setQuery('');
+            }}
+          />
+        </button>
+      )}
       <input
         className="w-10 grow font-light placeholder-neutral-500 outline-0"
         type="text"
@@ -41,6 +58,16 @@ function SearchBox() {
         }}
         value={query}
       />
+      {query && (
+        <button type="button" className="sm:hidden">
+          <HiXMark
+            className="text-2xl"
+            onClick={() => {
+              setQuery('');
+            }}
+          />
+        </button>
+      )}
       <button
         className="flex basis-auto"
         type="button"
