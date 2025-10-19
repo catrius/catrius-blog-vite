@@ -45,6 +45,7 @@ function BurgerNav() {
               >
                 <div className="mb-10 flex flex-row-reverse">
                   <button
+                    className="cursor-pointer"
                     type="button"
                     onClick={() => {
                       setMenuOpen(false);

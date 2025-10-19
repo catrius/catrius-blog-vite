@@ -50,7 +50,7 @@ function SearchBox({ className = '', auto = false }: PropsType) {
         <button
           type="button"
           className={`
-            hidden
+            hidden cursor-pointer
             sm:block
           `}
         >
@@ -77,7 +77,13 @@ function SearchBox({ className = '', auto = false }: PropsType) {
         value={query}
       />
       {query && (
-        <button type="button" className="sm:hidden">
+        <button
+          type="button"
+          className={`
+            cursor-pointer
+            sm:hidden
+          `}
+        >
           <HiXMark
             className="text-2xl"
             onClick={() => {
