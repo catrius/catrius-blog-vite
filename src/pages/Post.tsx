@@ -3,11 +3,17 @@ import { useParams } from 'react-router';
 import dayjs from 'dayjs';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useEffect } from 'react';
+import { scrollToTop } from '@/utils/common.ts';
 
 function Post() {
   const params = useParams();
   const { data: posts } = useGetPostQuery({ id: `eq.${params.id}` });
   const post = posts?.[0];
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   if (!post) {
     return null;

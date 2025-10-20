@@ -1,18 +1,26 @@
 import RcPagination from 'rc-pagination';
 import { PAGE_SIZE } from '@/constants/common.ts';
 import { type useLazyGetPostQuery, useGetPostQuery } from '@/api/api.ts';
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import useQuery from '@/hooks/useQuery.ts';
+import { useSearchParams } from 'react-router';
+import { scrollToTop } from '@/utils/common.ts';
 
 interface PropsType {
   getPost: ReturnType<typeof useLazyGetPostQuery>[0];
-  query?: Record<string, string>;
 }
 
-function Pagination({ getPost, query = undefined }: PropsType) {
-  const stableQuery = useMemo(() => query ?? {}, [query]);
+function Pagination({ getPost }: PropsType) {
+  const query = useQuery();
+  const [params, setParams] = useSearchParams();
+  const q = params.get('q') ?? '';
 
-  const { data: posts } = useGetPostQuery({ select: 'count', ...stableQuery });
-  const [currentPage, setCurrentPage] = useState(1);
+  const { data: posts } = useGetPostQuery({ select: 'count', ...query });
+  const page = useMemo(() => {
+    const pageParam = params.get('page') ?? '1';
+    return parseInt(pageParam, 10);
+  }, [params]);
+
   // @ts-ignore
   const total = posts?.[0].count;
 
@@ -20,12 +28,10 @@ function Pagination({ getPost, query = undefined }: PropsType) {
     getPost({
       order: 'created_at.desc',
       limit: PAGE_SIZE.toString(),
-      offset: ((currentPage - 1) * PAGE_SIZE).toString(),
-      ...stableQuery,
-    }).then(() => {
-      window.scrollTo(0, 0);
+      offset: ((page - 1) * PAGE_SIZE).toString(),
+      ...query,
     });
-  }, [currentPage, getPost, stableQuery]);
+  }, [page, getPost, query]);
 
   if (!total) {
     return null;
@@ -36,7 +42,8 @@ function Pagination({ getPost, query = undefined }: PropsType) {
       total={total}
       defaultPageSize={PAGE_SIZE}
       onChange={(current: number) => {
-        setCurrentPage(current);
+        setParams({ page: current.toString(), q });
+        scrollToTop();
       }}
     />
   );

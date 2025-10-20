@@ -1,22 +1,15 @@
 import { useLazyGetPostQuery, useGetPostQuery } from '@/api/api.ts';
-import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import SearchPostList from '@/components/SearchPostList.tsx';
 import SearchBox from '@/components/Nav/SearchBox.tsx';
 import { SEARCH_MIN_CHAR } from '@/constants/common.ts';
+import useQuery from '@/hooks/useQuery.ts';
 
 function Search() {
   const [getPost, { data: posts }] = useLazyGetPostQuery();
   const [params] = useSearchParams();
   const q = params.get('q') ?? '';
-
-  const query = useMemo(() => {
-    const encodedQ = q.replaceAll(' ', '+');
-
-    return {
-      content: `fts(english).${encodedQ}`,
-    };
-  }, [q]);
+  const query = useQuery();
 
   const { data: totalPosts } = useGetPostQuery({ select: 'count', ...query });
   // @ts-ignore
@@ -39,7 +32,7 @@ function Search() {
           <span>{`No results found for "${q}". Try a new search.`} </span>
         )}
       </div>
-      {q.length >= SEARCH_MIN_CHAR && <SearchPostList posts={posts} getPost={getPost} query={query} />}
+      {q.length >= SEARCH_MIN_CHAR && <SearchPostList posts={posts} getPost={getPost} />}
     </div>
   );
 }
