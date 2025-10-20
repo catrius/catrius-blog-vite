@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter, Outlet } from 'react-router';
 import PATH from '@/routes.ts';
 import Home from '@/pages/Home.tsx';
 import App from '@/App.tsx';
@@ -6,6 +6,7 @@ import Post from '@/pages/Post.tsx';
 import Search from '@/pages/Search.tsx';
 import Page from '@/pages/Page';
 import Contact from '@/pages/Contact.tsx';
+import PostEdit from '@/pages/PostEdit.tsx';
 
 const routes = [
   {
@@ -14,7 +15,11 @@ const routes = [
   },
   {
     path: PATH.post,
-    element: <Post />,
+    element: <Outlet />,
+    children: [
+      { index: true, element: <Post /> },
+      { path: PATH.postEdit, element: <PostEdit /> },
+    ],
   },
   {
     path: PATH.search,

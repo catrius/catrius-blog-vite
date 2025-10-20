@@ -24,3 +24,9 @@
 .rc-pagination-item:hover a {
   color: var(--color-neutral-950)
 }
+
+body .w-md-editor-text-pre > code,
+body .w-md-editor-text-input {
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+}

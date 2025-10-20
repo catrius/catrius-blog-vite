@@ -8,7 +8,7 @@ import { scrollToTop } from '@/utils/common.ts';
 
 function Post() {
   const params = useParams();
-  const { data: posts } = useGetPostQuery({ id: `eq.${params.id}` });
+  const { data: posts } = useGetPostQuery({ id: `eq.${params.id}` }, { refetchOnMountOrArgChange: true });
   const post = posts?.[0];
 
   useEffect(() => {

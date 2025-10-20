@@ -2,6 +2,7 @@ const PATH = {
   home: '/',
   contact: '/contact',
   post: '/post/:id',
+  postEdit: '/post/:id/edit',
   search: '/search',
   page: '/page/:name',
 };
