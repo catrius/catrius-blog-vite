@@ -5,6 +5,7 @@ const PATH = {
   postEdit: '/post/:id/edit',
   search: '/search',
   page: '/page/:name',
+  login: '/login',
 };
 
 export const buildPostPath = (id: string | number) => PATH.post.replace(':id', id.toString());
@@ -20,6 +21,7 @@ export const NAV_PATHS = {
 export const NAV_PAGE_NAMES = {
   [PATH.home]: 'The Blog',
   [PATH.search]: 'Search Results',
+  [PATH.login]: 'Login',
 };
 
 export default PATH;

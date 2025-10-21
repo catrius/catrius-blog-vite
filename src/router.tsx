@@ -7,6 +7,7 @@ import Search from '@/pages/Search.tsx';
 import Page from '@/pages/Page';
 import Contact from '@/pages/Contact.tsx';
 import PostEdit from '@/pages/PostEdit.tsx';
+import Login from '@/pages/Login.tsx';
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
   {
     path: PATH.contact,
     element: <Contact />,
+  },
+  {
+    path: PATH.login,
+    element: <Login />,
   },
 ];
 

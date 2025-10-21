@@ -13,6 +13,7 @@ function Footer() {
               first:text-3xl first:text-neutral-950
             `}
             to={path[1]}
+            key={path[0]}
           >
             {path[0]}
           </Link>

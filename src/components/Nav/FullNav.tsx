@@ -23,6 +23,7 @@ function FullNav() {
             ${location.pathname === path[1] && 'not-first:bg-neutral-950 not-first:text-neutral-200'}
           `}
           to={path[1]}
+          key={path[0]}
         >
           {path[0]}
         </Link>
