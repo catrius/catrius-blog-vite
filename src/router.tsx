@@ -8,6 +8,7 @@ import Page from '@/pages/Page';
 import Contact from '@/pages/Contact.tsx';
 import PostEdit from '@/pages/PostEdit.tsx';
 import Login from '@/pages/Login.tsx';
+import Logout from '@/pages/Logout.tsx';
 
 const routes = [
   {
@@ -37,6 +38,10 @@ const routes = [
   {
     path: PATH.login,
     element: <Login />,
+  },
+  {
+    path: PATH.logout,
+    element: <Logout />,
   },
 ];
 

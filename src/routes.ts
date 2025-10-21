@@ -6,11 +6,13 @@ const PATH = {
   search: '/search',
   page: '/page/:name',
   login: '/login',
+  logout: '/logout',
 };
 
 export const buildPostPath = (id: string | number) => PATH.post.replace(':id', id.toString());
 export const buildPagePath = (name: string | number) => PATH.page.replace(':name', name.toString());
 export const buildSearchPath = (query: string) => `${PATH.search}?q=${query}`;
+export const buildLoginPath = (returnUrl: string) => `${PATH.login}?returnUrl=${returnUrl}`;
 
 export const NAV_PATHS = {
   blog: PATH.home,

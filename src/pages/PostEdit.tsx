@@ -1,11 +1,13 @@
-import { useGetPostQuery, usePatchPostMutation } from '@/api/api.ts';
+import { useGetPostQuery } from '@/api/api.ts';
 import { useParams, useNavigate } from 'react-router';
 import dayjs from 'dayjs';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { scrollToTop } from '@/utils/common.ts';
 import MDEditor from '@uiw/react-md-editor';
 import LoadingSpinner from '@/components/LoadingSpinner.tsx';
 import { buildPostPath } from '@/routes.ts';
+import supabase from '@/lib/supabase.ts';
+import useSupaQuery from '@/hooks/useSupaQuery.ts';
 
 function PostEdit() {
   const params = useParams();
@@ -16,7 +18,12 @@ function PostEdit() {
   const post = posts?.[0];
 
   const [editorContent, setEditorContent] = useState<string | undefined>('');
-  const [patchPost, { isLoading, isSuccess, isError }] = usePatchPostMutation();
+
+  const updatePostCallback = useCallback(
+    async () => supabase.from('post').update({ content: editorContent }).eq('id', params.id),
+    [editorContent, params.id],
+  );
+  const [patchPost, { isLoading, isSuccess, isError, error }] = useSupaQuery(updatePostCallback);
 
   useEffect(() => {
     scrollToTop();
@@ -25,6 +32,12 @@ function PostEdit() {
   useEffect(() => {
     setEditorContent(post?.content || '');
   }, [post?.content]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(buildPostPath(params.id || ''));
+    }
+  }, [isSuccess, navigate, params.id]);
 
   if (!post) {
     return null;
@@ -37,7 +50,7 @@ function PostEdit() {
         sm:mx-auto sm:my-5 sm:max-w-400
       `}
     >
-      <div className="mb-4 flex flex-col items-end">
+      <div className="mb-4 flex flex-col items-end gap-2">
         <div>
           <button
             type="button"
@@ -47,17 +60,7 @@ function PostEdit() {
               active:scale-95
             `}
             onClick={() => {
-              patchPost({
-                id: idQuery,
-                // @ts-ignore
-                post: {
-                  content: editorContent || '',
-                },
-              })
-                .unwrap()
-                .then(() => {
-                  navigate(buildPostPath(post.id));
-                });
+              patchPost();
             }}
           >
             {!isLoading ? 'Save' : <LoadingSpinner className="scale-75" />}
@@ -69,7 +72,7 @@ function PostEdit() {
           </div>
         )}
 
-        {isError && <div className="font-light text-red-800">× Something wrong happened. Please try again.</div>}
+        {isError && <div className="font-light text-red-800">{error?.message}</div>}
       </div>
       <div className="mb-2 text-sm/normal font-light">{dayjs(post.created_at).format('ll')}</div>
       <div

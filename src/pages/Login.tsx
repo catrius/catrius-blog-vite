@@ -1,8 +1,9 @@
 import LoadingSpinner from '@/components/LoadingSpinner';
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import supabase from '@/lib/supabase';
-import { useState } from 'react';
-import { AuthError } from '@supabase/supabase-js';
+import { useCallback, useEffect } from 'react';
+import useSupaQuery from '@/hooks/useSupaQuery.ts';
+import { useNavigate, useSearchParams } from 'react-router';
 
 interface LoginFormInput {
   email: string;
@@ -10,40 +11,34 @@ interface LoginFormInput {
 }
 
 function Login() {
+  const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const returnUrl = params.get('returnUrl') ?? '';
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<LoginFormInput>();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState<AuthError | undefined>(undefined);
+  const loginCallback = useCallback(async () => {
+    const formData = getValues();
+    return supabase.auth.signInWithPassword({ email: formData.email, password: formData.password });
+  }, [getValues]);
 
-  const onSubmit: SubmitHandler<LoginFormInput> = async (formData) => {
-    setIsLoading(true);
+  const [login, { isLoading, isSuccess, isError, error }] = useSupaQuery(loginCallback);
 
-    const { data: loginData, error: loginError } = await supabase.auth.signInWithPassword({
-      email: formData.email,
-      password: formData.password,
-    });
-
-    setIsLoading(false);
-    if (loginError) {
-      setIsError(true);
-      setIsSuccess(false);
-      setError(loginError);
-    } else {
-      setIsError(false);
-      setIsSuccess(true);
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(returnUrl);
     }
-  };
+  }, [isSuccess, navigate, returnUrl]);
 
   return (
     <div
       className={`
-        px-5 py-8
+        px-5 pb-8
         sm:mx-auto sm:my-5 sm:max-w-400
       `}
     >
@@ -52,7 +47,7 @@ function Login() {
           flex flex-col gap-9
           sm:mx-auto sm:max-w-100
         `}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(login)}
       >
         <div
           className={`
