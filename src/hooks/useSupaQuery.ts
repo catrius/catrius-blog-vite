@@ -7,18 +7,19 @@ import type {
 } from '@supabase/supabase-js';
 
 type Response = PostgrestSingleResponse<any> | AuthTokenResponsePassword;
-type Error = PostgrestError | AuthError;
+type SupaError = PostgrestError | AuthError;
 
 function useSupaQuery(callback: () => Promise<Response>) {
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<SupaError | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [data, setData] = useState<Response | null>(null);
 
   const run = useCallback(async () => {
     setIsLoading(true);
 
-    const { error: callBackError } = await callback();
+    const { data: callbackData, error: callBackError } = await callback();
 
     if (callBackError) {
       setIsError(true);
@@ -29,12 +30,14 @@ function useSupaQuery(callback: () => Promise<Response>) {
       setIsSuccess(true);
     }
 
+    setData(callbackData);
     setIsLoading(false);
   }, [callback]);
 
   return [
     run,
     {
+      data,
       error,
       isLoading,
       isError,
