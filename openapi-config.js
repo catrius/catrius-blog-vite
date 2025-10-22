@@ -1,6 +1,6 @@
 const config = {
   // eslint-disable-next-line no-undef
-  schemaFile: process.env.VITE_ENV_API_URL,
+  schemaFile: `${process.env.VITE_PUBLIC_DATABASESUPABASE_URL}/rest/v1/`,
   apiFile: './src/store/api-slices/emptyApi.ts',
   apiImport: 'emptySplitApi',
   outputFile: './src/api/api.ts',
@@ -14,7 +14,7 @@ const config = {
   httpResolverOptions: {
     headers: {
       // eslint-disable-next-line no-undef
-      apikey: process.env.VITE_ENV_API_KEY,
+      apikey: process.env.VITE_PUBLIC_DATABASESUPABASE_ANON_KEY,
     },
   },
 };
